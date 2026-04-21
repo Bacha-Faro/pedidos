@@ -142,10 +142,12 @@
       <p>Columnas esperadas en el CSV:</p>
       <code>SUCURSAL</code>
       <code>TIPO DE PEDIDO</code>
+      <code>N° PEDIDO</code>
       <code>DIA</code>
       <code>HORA</code>
       <code>CANTIDAD DE ARTICULOS</code>
-      <code>TIEMPO ESTIMADO DE PREPARACION</code>
+      <code>CANTIDAD TOTAL</code>
+      <code>TIEMPO DE ARMADO</code>
     </div>
   </div>
 </div>
@@ -161,9 +163,10 @@
     <div class="kpi accent"><div class="kpi-label">Total de pedidos</div><div class="kpi-value" id="kpi-total">—</div><div class="kpi-sub" id="kpi-sub-total"></div></div>
     <div class="kpi blue"><div class="kpi-label">Sucursales activas</div><div class="kpi-value" id="kpi-suc">—</div></div>
     <div class="kpi amber"><div class="kpi-label">Promedio artículos</div><div class="kpi-value" id="kpi-art">—</div><div class="kpi-sub">por pedido</div></div>
-    <div class="kpi coral"><div class="kpi-label">Promedio preparación</div><div class="kpi-value" id="kpi-tiempo">—</div><div class="kpi-sub">minutos por pedido</div></div>
+    <div class="kpi coral"><div class="kpi-label">Promedio armado</div><div class="kpi-value" id="kpi-tiempo">—</div><div class="kpi-sub">minutos por pedido</div></div>
     <div class="kpi accent"><div class="kpi-label">Artículos totales</div><div class="kpi-value" id="kpi-art-total">—</div></div>
-    <div class="kpi blue"><div class="kpi-label">Tiempo total prep.</div><div class="kpi-value" id="kpi-tiempo-total">—</div><div class="kpi-sub">minutos</div></div>
+    <div class="kpi blue"><div class="kpi-label">Tiempo total armado</div><div class="kpi-value" id="kpi-tiempo-total">—</div><div class="kpi-sub">minutos</div></div>
+    <div class="kpi amber"><div class="kpi-label">Cantidad total</div><div class="kpi-value" id="kpi-cant-total">—</div><div class="kpi-sub">unidades totales</div></div>
   </div>
 
   <div class="section-title">Pedidos por sucursal</div>
@@ -245,10 +248,12 @@ let charts = {};
 const COLS = {
   suc: ['SUCURSAL','sucursal','Sucursal'],
   tipo: ['TIPO DE PEDIDO','tipo de pedido','Tipo de Pedido','tipo'],
+  nro: ['N° PEDIDO','N.° PEDIDO','N° PEDIDO','NUMERO PEDIDO','NÚMERO PEDIDO','nro pedido','numero pedido'],
   dia: ['DIA','DÍA','dia','día','Dia','Día','FECHA','fecha'],
   hora: ['HORA','hora','Hora'],
   art: ['CANTIDAD DE ARTICULOS','CANTIDAD DE ARTÍCULOS','cantidad de articulos','cantidad de artículos','Cantidad de Articulos'],
-  tiempo: ['TIEMPO ESTIMADO DE PREPARACION','TIEMPO ESTIMADO DE PREPARACIÓN','tiempo estimado de preparacion','tiempo estimado de preparación']
+  cantTotal: ['CANTIDAD TOTAL','cantidad total','Cantidad Total'],
+  tiempo: ['TIEMPO DE ARMADO','tiempo de armado','Tiempo de Armado','TIEMPO ESTIMADO DE PREPARACION','TIEMPO ESTIMADO DE PREPARACIÓN','tiempo estimado de preparacion','tiempo estimado de preparación']
 };
 
 function findCol(headers, aliases) {
@@ -267,12 +272,16 @@ function parseCSV(text) {
   const colIdx = {
     suc: findCol(headers, COLS.suc),
     tipo: findCol(headers, COLS.tipo),
+    nro: findCol(headers, COLS.nro),
     dia: findCol(headers, COLS.dia),
     hora: findCol(headers, COLS.hora),
     art: findCol(headers, COLS.art),
+    cantTotal: findCol(headers, COLS.cantTotal),
     tiempo: findCol(headers, COLS.tiempo)
   };
-  const missing = Object.entries(colIdx).filter(([,v]) => v < 0).map(([k]) => k);
+  // nro y cantTotal son opcionales, no bloquean la carga
+  const required = ['suc','tipo','dia','hora','art','tiempo'];
+  const missing = required.filter(k => colIdx[k] < 0);
   if (missing.length > 0) {
     alert('No se encontraron las columnas: ' + missing.join(', ') + '\nRevisá que los nombres del CSV coincidan con los esperados.');
     return null;
@@ -284,9 +293,11 @@ function parseCSV(text) {
     data.push({
       suc: vals[colIdx.suc] || '',
       tipo: vals[colIdx.tipo] || '',
+      nro: colIdx.nro >= 0 ? (vals[colIdx.nro] || '') : '',
       dia: vals[colIdx.dia] || '',
       hora: vals[colIdx.hora] || '',
       art: parseFloat((vals[colIdx.art] || '0').replace(',','.')) || 0,
+      cantTotal: colIdx.cantTotal >= 0 ? (parseFloat((vals[colIdx.cantTotal] || '0').replace(',','.')) || 0) : 0,
       tiempo: parseFloat((vals[colIdx.tiempo] || '0').replace(',','.')) || 0
     });
   }
@@ -327,6 +338,8 @@ function buildKPIs() {
   document.getElementById('kpi-tiempo').textContent = isNaN(avgT) ? '—' : Math.round(avgT);
   document.getElementById('kpi-art-total').textContent = d.reduce((s,x)=>s+x.art,0).toLocaleString('es-AR');
   document.getElementById('kpi-tiempo-total').textContent = d.reduce((s,x)=>s+x.tiempo,0).toLocaleString('es-AR');
+  const totalCant = d.reduce((s,x)=>s+x.cantTotal,0);
+  document.getElementById('kpi-cant-total').textContent = totalCant > 0 ? totalCant.toLocaleString('es-AR') : '—';
 }
 
 function updateChartSucursal() { buildChartSucursal(); }
