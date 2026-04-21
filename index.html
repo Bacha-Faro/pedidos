@@ -248,17 +248,23 @@ let charts = {};
 const COLS = {
   suc: ['SUCURSAL','sucursal','Sucursal'],
   tipo: ['TIPO DE PEDIDO','tipo de pedido','Tipo de Pedido','tipo'],
-  nro: ['N° PEDIDO','N.° PEDIDO','N° PEDIDO','NUMERO PEDIDO','NÚMERO PEDIDO','nro pedido','numero pedido'],
+  nro: ['N° PEDIDO','N° pedido','N.° PEDIDO','N.° pedido','NUMERO PEDIDO','NÚMERO PEDIDO','nro pedido','numero pedido'],
   dia: ['DIA','DÍA','dia','día','Dia','Día','FECHA','fecha'],
   hora: ['HORA','hora','Hora'],
-  art: ['CANTIDAD DE ARTICULOS','CANTIDAD DE ARTÍCULOS','cantidad de articulos','cantidad de artículos','Cantidad de Articulos'],
+  art: ['CANTIDAD ARTICULOS','CANTIDAD DE ARTICULOS','CANTIDAD DE ARTÍCULOS','CANTIDAD ARTÍCULOS','cantidad articulos','cantidad de articulos','cantidad de artículos'],
   cantTotal: ['CANTIDAD TOTAL','cantidad total','Cantidad Total'],
   tiempo: ['TIEMPO DE ARMADO','tiempo de armado','Tiempo de Armado','TIEMPO ESTIMADO DE PREPARACION','TIEMPO ESTIMADO DE PREPARACIÓN','tiempo estimado de preparacion','tiempo estimado de preparación']
 };
 
 function findCol(headers, aliases) {
+  // 1° pasada: coincidencia exacta
   for (let a of aliases) {
     const idx = headers.findIndex(h => h.trim().toLowerCase() === a.toLowerCase());
+    if (idx >= 0) return idx;
+  }
+  // 2° pasada: el header empieza con el alias (cubre "DIA (hacer doble click...)", "HORA (formato 08:00)", etc.)
+  for (let a of aliases) {
+    const idx = headers.findIndex(h => h.trim().toLowerCase().startsWith(a.toLowerCase()));
     if (idx >= 0) return idx;
   }
   return -1;
