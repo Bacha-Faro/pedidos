@@ -11,138 +11,144 @@
     --bg: #f4f5f7; --surface: #ffffff; --border: #e2e4e9;
     --text: #1a1d23; --muted: #6b7280; --accent: #0d6e6e;
     --accent-light: #e0f4f4; --amber: #b45309; --amber-light: #fef3c7;
-    --teal2: #0369a1; --teal2-light: #e0f2fe; --coral: #be185d;
-    --coral-light: #fce7f3; --green: #166534; --green-light: #dcfce7;
+    --teal2: #0369a1; --teal2-light: #e0f2fe;
+    --coral: #be185d; --coral-light: #fce7f3;
+    --green: #166534; --green-light: #dcfce7;
     --font: 'Segoe UI', system-ui, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg:#0f1117;--surface:#1a1d23;--border:#2d3140;--text:#e8eaf0;--muted:#9ca3af;
-      --accent-light:#0d3333;--amber-light:#3d2e00;--teal2-light:#0c2d3d;
-      --coral-light:#3d0d22;--green-light:#0a2618;
+      --bg: #0f1117; --surface: #1a1d23; --border: #2d3140;
+      --text: #e8eaf0; --muted: #9ca3af; --accent-light: #0d3333;
+      --amber-light: #3d2e00; --teal2-light: #0c2d3d;
+      --coral-light: #3d0d22; --green-light: #0a2618;
     }
   }
-  body { font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
 
   /* HEADER */
-  header { background:var(--surface);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap; }
-  .logo { display:flex;align-items:center;gap:10px; }
-  .logo-dot { width:28px;height:28px;border-radius:6px;background:var(--accent);display:flex;align-items:center;justify-content:center; }
-  .logo-dot svg { width:16px;height:16px;fill:#fff; }
-  .logo-text { font-size:15px;font-weight:600;letter-spacing:-0.3px; }
-  .logo-sub { font-size:12px;color:var(--muted); }
-  .header-actions { display:flex;align-items:center;gap:8px; }
-  .btn-sheets { background:#1a73e8;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;transition:opacity 0.15s; }
-  .btn-sheets:hover { opacity:0.88; }
-  .btn-sheets:disabled { opacity:0.55;cursor:not-allowed; }
-  #upload-btn { background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:7px;transition:opacity 0.15s; }
-  #upload-btn:hover { opacity:0.88; }
-  #file-input { display:none; }
-  .sync-status { font-size:11px;color:var(--muted); }
+  header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-dot { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .logo-dot svg { width: 16px; height: 16px; fill: #fff; }
+  .logo-text { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+  .logo-sub { font-size: 12px; color: var(--muted); }
+  .header-actions { display: flex; align-items: center; gap: 8px; }
+  .btn-sheets { background: #1a73e8; color: #fff; border: none; border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: opacity 0.15s; }
+  .btn-sheets:hover { opacity: 0.88; }
+  .btn-sheets:disabled { opacity: 0.55; cursor: not-allowed; }
+  #upload-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 7px; transition: opacity 0.15s; }
+  #upload-btn:hover { opacity: 0.88; }
+  #file-input { display: none; }
+  .sync-status { font-size: 11px; color: var(--muted); }
 
   /* DATE FILTER BAR */
-  #date-filter-bar { display:none;background:var(--surface);border-bottom:1px solid var(--border);padding:10px 32px; }
-  .date-filter-inner { display:flex;align-items:center;gap:12px;flex-wrap:wrap;max-width:1400px;margin:0 auto; }
-  .date-filter-inner label { font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px; }
-  .date-filter-inner input[type="date"] { background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 10px;font-size:12px;font-family:var(--font);cursor:pointer; }
-  .date-filter-inner input[type="date"]:focus { outline:2px solid var(--accent); }
-  .btn-date-reset { background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;transition:all 0.15s; }
-  .btn-date-reset:hover { border-color:var(--accent);color:var(--accent); }
-  .date-range-info { font-size:12px;color:var(--muted);margin-left:auto; }
-  .date-range-info strong { color:var(--text); }
+  #date-filter-bar { display: none; background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 32px; }
+  .date-filter-inner { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; max-width: 1400px; margin: 0 auto; }
+  .date-filter-inner label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .date-filter-inner input[type="date"] { background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 10px; font-size: 12px; font-family: var(--font); cursor: pointer; }
+  .date-filter-inner input[type="date"]:focus { outline: 2px solid var(--accent); }
+  .btn-date-reset { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; transition: all 0.15s; }
+  .btn-date-reset:hover { border-color: var(--accent); color: var(--accent); }
+  .date-range-info { font-size: 12px; color: var(--muted); margin-left: auto; }
+  .date-range-info strong { color: var(--text); }
 
   /* DROP ZONE */
-  #drop-zone { display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 65px);padding:40px; }
-  .drop-card { background:var(--surface);border:2px dashed var(--border);border-radius:16px;padding:60px 48px;text-align:center;max-width:520px;width:100%;transition:border-color 0.2s; }
-  .drop-card.drag-over { border-color:var(--accent); }
-  .drop-icon { width:56px;height:56px;background:var(--accent-light);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px; }
-  .drop-icon svg { width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round; }
-  .drop-card h2 { font-size:18px;font-weight:600;margin-bottom:8px; }
-  .drop-card p { font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:20px; }
-  .drop-btn { background:var(--accent);color:#fff;border:none;border-radius:8px;padding:11px 24px;font-size:14px;font-weight:500;cursor:pointer;margin-bottom:12px;display:inline-block; }
-  .drop-btn:hover { opacity:0.88; }
-  .drop-hint { font-size:12px;color:var(--muted);margin-bottom:16px; }
-  .drop-divider { display:flex;align-items:center;gap:12px;margin:16px 0; }
-  .drop-divider span { font-size:12px;color:var(--muted); }
-  .drop-divider hr { flex:1;border:none;border-top:1px solid var(--border); }
-  .btn-sheets-drop { background:#1a73e8;color:#fff;border:none;border-radius:8px;padding:11px 24px;font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:8px;width:100%;justify-content:center;margin-bottom:6px; }
-  .btn-sheets-drop:hover { opacity:0.88; }
-  .col-hint { margin-top:20px;background:var(--bg);border-radius:8px;padding:12px 16px;text-align:left; }
-  .col-hint p { font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:500; }
-  .col-hint code { font-size:11px;background:var(--border);color:var(--text);padding:2px 5px;border-radius:4px;display:inline-block;margin:2px; }
-  .error-msg { background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:8px;padding:12px 16px;font-size:13px;margin:12px 0; }
+  #drop-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 65px); padding: 40px; }
+  .drop-card { background: var(--surface); border: 2px dashed var(--border); border-radius: 16px; padding: 60px 48px; text-align: center; max-width: 520px; width: 100%; transition: border-color 0.2s; }
+  .drop-card.drag-over { border-color: var(--accent); }
+  .drop-icon { width: 56px; height: 56px; background: var(--accent-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+  .drop-icon svg { width: 28px; height: 28px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .drop-card h2 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .drop-card p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+  .drop-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 11px 24px; font-size: 14px; font-weight: 500; cursor: pointer; margin-bottom: 12px; display: inline-block; }
+  .drop-btn:hover { opacity: 0.88; }
+  .drop-hint { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .drop-divider { display: flex; align-items: center; gap: 12px; margin: 16px 0; }
+  .drop-divider span { font-size: 12px; color: var(--muted); }
+  .drop-divider hr { flex: 1; border: none; border-top: 1px solid var(--border); }
+  .btn-sheets-drop { background: #1a73e8; color: #fff; border: none; border-radius: 8px; padding: 11px 24px; font-size: 14px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; width: 100%; justify-content: center; }
+  .btn-sheets-drop:hover { opacity: 0.88; }
+  .col-hint { margin-top: 20px; background: var(--bg); border-radius: 8px; padding: 12px 16px; text-align: left; }
+  .col-hint p { font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+  .col-hint code { font-size: 11px; background: var(--border); color: var(--text); padding: 2px 5px; border-radius: 4px; display: inline-block; margin: 2px 2px; }
 
   /* DASHBOARD */
-  #dashboard { display:none;padding:28px 32px;max-width:1400px;margin:0 auto; }
-  .section-title { font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;margin-top:32px; }
+  #dashboard { display: none; padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+  .section-title { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; margin-top: 32px; }
 
   /* TOTALES DESTACADOS */
-  .totals-header { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:8px; }
-  .totals-header-title { font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px; }
-  .totals-row { display:flex;align-items:center;gap:32px;flex-wrap:wrap; }
-  .total-big { display:flex;flex-direction:column;gap:3px; }
-  .total-big-value { font-size:36px;font-weight:800;color:var(--text);letter-spacing:-2px;line-height:1; }
-  .total-big-label { font-size:12px;color:var(--muted); }
-  .totals-divider { width:1px;height:48px;background:var(--border); }
+  .totals-header { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 8px; }
+  .totals-header-title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
+  .totals-row { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+  .total-big { display: flex; flex-direction: column; gap: 3px; }
+  .total-big-value { font-size: 36px; font-weight: 800; color: var(--text); letter-spacing: -2px; line-height: 1; }
+  .total-big-label { font-size: 12px; color: var(--muted); }
+  .totals-divider { width: 1px; height: 48px; background: var(--border); }
 
-  /* KPIs */
-  .kpi-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:8px; }
-  .kpi { background:var(--surface);border-radius:10px;border:1px solid var(--border);padding:16px 18px; }
-  .kpi-label { font-size:12px;color:var(--muted);margin-bottom:6px; }
-  .kpi-value { font-size:26px;font-weight:700;line-height:1;letter-spacing:-1px; }
-  .kpi-sub { font-size:11px;color:var(--muted);margin-top:5px; }
-  .kpi.accent { border-left:3px solid var(--accent); }
-  .kpi.amber  { border-left:3px solid #d97706; }
-  .kpi.blue   { border-left:3px solid #0369a1; }
-  .kpi.coral  { border-left:3px solid #be185d; }
-  .kpi.green  { border-left:3px solid #166534; }
+  /* KPI GRID */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 8px; }
+  .kpi { background: var(--surface); border-radius: 10px; border: 1px solid var(--border); padding: 16px 18px; }
+  .kpi-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .kpi-value { font-size: 26px; font-weight: 700; color: var(--text); line-height: 1; letter-spacing: -1px; }
+  .kpi-sub { font-size: 11px; color: var(--muted); margin-top: 5px; }
+  .kpi.accent { border-left: 3px solid var(--accent); }
+  .kpi.amber  { border-left: 3px solid #d97706; }
+  .kpi.blue   { border-left: 3px solid #0369a1; }
+  .kpi.coral  { border-left: 3px solid #be185d; }
+  .kpi.green  { border-left: 3px solid #166534; }
 
   /* TIPO CARDS */
-  .tipo-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-top:12px; }
-  .tipo-card { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px; }
-  .tipo-card-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:14px; }
-  .tipo-card-name { font-size:14px;font-weight:700; }
-  .tipo-badge { font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px; }
-  .tipo-badge.t0 { background:var(--accent-light);color:var(--accent); }
-  .tipo-badge.t1 { background:var(--teal2-light);color:var(--teal2); }
-  .tipo-badge.t2 { background:var(--coral-light);color:var(--coral); }
-  .tipo-badge.t3 { background:var(--amber-light);color:var(--amber); }
-  .tipo-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:10px; }
-  .tipo-stat { background:var(--bg);border-radius:8px;padding:10px 12px; }
-  .tipo-stat-val { font-size:20px;font-weight:700;letter-spacing:-0.5px; }
-  .tipo-stat-lbl { font-size:11px;color:var(--muted);margin-top:3px; }
-  .tipo-total { font-size:13px;color:var(--muted);margin-top:12px; }
-  .tipo-total strong { color:var(--text); }
+  .tipo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-top: 12px; }
+  .tipo-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .tipo-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .tipo-card-name { font-size: 14px; font-weight: 700; color: var(--text); }
+  .tipo-badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .tipo-badge.t0 { background: var(--accent-light); color: var(--accent); }
+  .tipo-badge.t1 { background: var(--teal2-light); color: var(--teal2); }
+  .tipo-badge.t2 { background: var(--coral-light); color: var(--coral); }
+  .tipo-badge.t3 { background: var(--amber-light); color: var(--amber); }
+  .tipo-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .tipo-stat { background: var(--bg); border-radius: 8px; padding: 10px 12px; }
+  .tipo-stat-val { font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; }
+  .tipo-stat-lbl { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .tipo-total { font-size: 13px; color: var(--muted); margin-top: 12px; }
+  .tipo-total strong { color: var(--text); }
 
   /* CHARTS */
-  .charts-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:20px;margin-top:16px; }
-  .chart-card { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 22px; }
-  .chart-card.full { grid-column:1/-1; }
-  .chart-title { font-size:14px;font-weight:600;margin-bottom:4px; }
-  .chart-sub { font-size:12px;color:var(--muted);margin-bottom:16px; }
-  .chart-wrap { position:relative;width:100%; }
-  .filter-row { display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap; }
-  .filter-row select { background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:6px 10px;font-size:12px;cursor:pointer; }
-  .filter-label { font-size:12px;color:var(--muted); }
-  .legend-row { display:flex;flex-wrap:wrap;gap:14px;margin-bottom:12px; }
-  .leg { display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted); }
-  .leg-box { width:10px;height:10px;border-radius:2px; }
-
-  .top-table { width:100%;border-collapse:collapse;font-size:13px; }
-  .top-table th { text-align:left;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;padding:8px 10px;border-bottom:1px solid var(--border); }
-  .top-table td { padding:9px 10px;border-bottom:1px solid var(--border); }
-  .top-table tr:last-child td { border-bottom:none; }
-  .top-table .rank { font-weight:700;color:var(--muted);font-size:12px; }
-  .bar-pill { height:6px;border-radius:3px;background:var(--accent);display:inline-block;min-width:4px; }
-  .info-bar { background:var(--accent-light);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:8px; }
+  .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; margin-top: 16px; }
+  .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+  .chart-card.full { grid-column: 1 / -1; }
+  .chart-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .chart-sub { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
+  .chart-wrap { position: relative; width: 100%; }
+  .filter-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+  .filter-row select { background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 6px 10px; font-size: 12px; cursor: pointer; }
+  .filter-label { font-size: 12px; color: var(--muted); }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 12px; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--muted); }
+  .leg-box { width: 10px; height: 10px; border-radius: 2px; }
+  .top-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .top-table th { text-align: left; font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .top-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
+  .top-table tr:last-child td { border-bottom: none; }
+  .top-table .rank { font-weight: 700; color: var(--muted); font-size: 12px; }
+  .bar-pill { height: 6px; border-radius: 3px; background: var(--accent); display: inline-block; min-width: 4px; }
+  .info-bar { background: var(--accent-light); border-radius: 8px; padding: 10px 16px; font-size: 12px; color: var(--accent); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+  .error-msg { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; border-radius: 8px; padding: 12px 16px; font-size: 13px; margin: 8px 0; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo">
-    <div class="logo-dot"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-    <div><div class="logo-text">Panel de Pedidos</div><div class="logo-sub">Métricas de droguería</div></div>
+    <div class="logo-dot">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <div>
+      <div class="logo-text">Panel de Pedidos</div>
+      <div class="logo-sub">Métricas de droguería</div>
+    </div>
   </div>
   <div class="header-actions">
     <span class="sync-status" id="sync-status"></span>
@@ -158,6 +164,7 @@
   </div>
 </header>
 
+<!-- BARRA FILTRO FECHAS -->
 <div id="date-filter-bar">
   <div class="date-filter-inner">
     <label>Período:</label>
@@ -169,9 +176,12 @@
   </div>
 </div>
 
+<!-- PANTALLA INICIAL -->
 <div id="drop-zone">
   <div class="drop-card" id="drop-target">
-    <div class="drop-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></div>
+    <div class="drop-icon">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+    </div>
     <h2>Panel de Pedidos</h2>
     <p>Conectá tu planilla de Google Sheets directamente o cargá un CSV exportado.</p>
     <button class="btn-sheets-drop" onclick="syncSheets()">
@@ -191,40 +201,65 @@
   </div>
 </div>
 
+<!-- DASHBOARD -->
 <div id="dashboard">
-  <div class="info-bar"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span id="info-text"></span></div>
+  <div class="info-bar">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span id="info-text"></span>
+  </div>
 
+  <!-- TOTALES DESTACADOS -->
   <div class="totals-header">
     <div class="totals-header-title">Totales del período seleccionado</div>
     <div class="totals-row">
-      <div class="total-big"><div class="total-big-value" id="total-pedidos">—</div><div class="total-big-label">Pedidos</div></div>
+      <div class="total-big">
+        <div class="total-big-value" id="total-pedidos">—</div>
+        <div class="total-big-label">Pedidos</div>
+      </div>
       <div class="totals-divider"></div>
-      <div class="total-big"><div class="total-big-value" id="total-articulos">—</div><div class="total-big-label">Artículos totales</div></div>
+      <div class="total-big">
+        <div class="total-big-value" id="total-articulos">—</div>
+        <div class="total-big-label">Artículos totales</div>
+      </div>
       <div class="totals-divider"></div>
-      <div class="total-big"><div class="total-big-value" id="total-cantidad">—</div><div class="total-big-label">Cantidad total (unidades)</div></div>
+      <div class="total-big">
+        <div class="total-big-value" id="total-cantidad">—</div>
+        <div class="total-big-label">Cantidad total (unidades)</div>
+      </div>
       <div class="totals-divider"></div>
-      <div class="total-big"><div class="total-big-value" id="total-sucursales">—</div><div class="total-big-label">Sucursales activas</div></div>
+      <div class="total-big">
+        <div class="total-big-value" id="total-sucursales">—</div>
+        <div class="total-big-label">Sucursales activas</div>
+      </div>
     </div>
   </div>
 
+  <!-- KPIs GENERALES -->
   <div class="section-title">Promedios generales</div>
   <div class="kpi-grid">
     <div class="kpi amber"><div class="kpi-label">Prom. artículos / pedido</div><div class="kpi-value" id="kpi-art">—</div></div>
     <div class="kpi coral"><div class="kpi-label">Prom. cantidad / pedido</div><div class="kpi-value" id="kpi-cant">—</div></div>
-    <div class="kpi blue"><div class="kpi-label">Prom. armado</div><div class="kpi-value" id="kpi-tiempo">—</div><div class="kpi-sub">minutos por pedido</div></div>
-    <div class="kpi green"><div class="kpi-label">Tiempo total armado</div><div class="kpi-value" id="kpi-tiempo-total">—</div><div class="kpi-sub">minutos</div></div>
+    <div class="kpi blue"><div class="kpi-label">Prom. tiempo de armado</div><div class="kpi-value" id="kpi-tiempo">—</div><div class="kpi-sub">minutos por pedido</div></div>
+    <div class="kpi green"><div class="kpi-label">Tiempo total de armado</div><div class="kpi-value" id="kpi-tiempo-total">—</div><div class="kpi-sub">minutos</div></div>
   </div>
 
+  <!-- MÉTRICAS POR TIPO -->
   <div class="section-title">Métricas por tipo de pedido</div>
   <div class="tipo-grid" id="tipo-grid"></div>
 
+  <!-- PEDIDOS POR SUCURSAL -->
   <div class="section-title">Pedidos por sucursal</div>
   <div class="chart-card full">
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
-      <div><div class="chart-title">Pedidos por sucursal y tipo</div><div class="chart-sub">Cantidad total agrupada por sucursal</div></div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px;">
+      <div>
+        <div class="chart-title">Pedidos por sucursal y tipo</div>
+        <div class="chart-sub">Cantidad total de pedidos agrupados por sucursal</div>
+      </div>
       <div class="filter-row">
         <span class="filter-label">Filtrar tipo:</span>
-        <select id="filtro-tipo" onchange="buildChartSucursal()"><option value="todos">Todos</option></select>
+        <select id="filtro-tipo" onchange="buildChartSucursal()">
+          <option value="todos">Todos</option>
+        </select>
       </div>
     </div>
     <div id="legend-suc" class="legend-row"></div>
@@ -258,362 +293,605 @@
     </div>
   </div>
 
+  <!-- RANKING -->
   <div class="section-title">Ranking por sucursal</div>
   <div class="charts-grid">
     <div class="chart-card">
       <div class="chart-title">Top — más artículos promedio</div>
       <div class="chart-sub">Promedio de artículos por pedido en cada sucursal</div>
-      <table class="top-table" id="tabla-art"><thead><tr><th>#</th><th>Sucursal</th><th>Prom. artículos</th><th></th></tr></thead><tbody></tbody></table>
+      <table class="top-table" id="tabla-art">
+        <thead><tr><th>#</th><th>Sucursal</th><th>Prom. artículos</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
     </div>
     <div class="chart-card">
       <div class="chart-title">Top — mayor tiempo de armado</div>
       <div class="chart-sub">Promedio de minutos de armado por sucursal</div>
-      <table class="top-table" id="tabla-tiempo"><thead><tr><th>#</th><th>Sucursal</th><th>Prom. minutos</th><th></th></tr></thead><tbody></tbody></table>
+      <table class="top-table" id="tabla-tiempo">
+        <thead><tr><th>#</th><th>Sucursal</th><th>Prom. minutos</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
     </div>
   </div>
 
+  <!-- DETALLE DE PEDIDOS -->
+  <div class="section-title" style="margin-top:32px;">Detalle de pedidos</div>
+  <div class="chart-card full">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+      <div>
+        <div class="chart-title">Listado de pedidos</div>
+        <div class="chart-sub">N° de pedido, sucursal, tipo, fecha y métricas</div>
+      </div>
+      <input type="text" id="search-nro" placeholder="Buscar N° pedido o sucursal…"
+        oninput="buildTablaDetalle()"
+        style="background:var(--bg);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:7px 12px;font-size:12px;font-family:var(--font);width:240px;">
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="top-table" id="tabla-detalle" style="min-width:700px;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>N° Pedido</th>
+            <th>Sucursal</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th style="text-align:right">Artículos</th>
+            <th style="text-align:right">Cantidad</th>
+            <th style="text-align:right">T. armado</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div id="detalle-more" style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center;"></div>
+  </div>
+
+  <!-- TENDENCIA SEMANAL -->
   <div class="section-title" style="margin-top:32px;">Tendencia semanal</div>
   <div class="chart-card full" id="card-semana">
     <div class="chart-title">Pedidos por semana</div>
-    <div class="chart-sub">Evolución del volumen a lo largo del tiempo</div>
+    <div class="chart-sub">Evolución del volumen de pedidos a lo largo del tiempo</div>
     <div class="chart-wrap" style="height:260px;"><canvas id="chartSemana"></canvas></div>
   </div>
 </div>
 
 <script>
+// ─── ESTADO GLOBAL ────────────────────────────────────────────────────────────
 let rawData = [];
 let filteredData = [];
 let charts = {};
-const SHEETS_CSV = 'https://docs.google.com/spreadsheets/d/14KWc2NrgCeJwA81WaCBSBdqttRljT5rRLIfMRQp5NAI/export?format=csv&gid=1385064353';
+const SHEETS_CSV  = 'https://docs.google.com/spreadsheets/d/14KWc2NrgCeJwA81WaCBSBdqttRljT5rRLIfMRQp5NAI/export?format=csv&gid=1385064353';
 const STORAGE_KEY = 'pedidos_data_v2';
 const COLORS = ['#0d6e6e','#0369a1','#be185d','#b45309','#166534','#7c3aed'];
 
-// ── FECHA ──────────────────────────────────────────────────────────────────────
-function parseDate(str) {
+// ─── PARSEO DE FECHAS ─────────────────────────────────────────────────────────
+// Devuelve "YYYY-MM-DD" string para comparaciones sin timezone issues
+function parseDateYMD(str) {
   if (!str) return null;
   str = str.trim();
-  const parts = str.split(/[\/\-\.]/);
-  let dt = new Date(str);
-  if ((isNaN(dt.getTime()) || str.includes('/')) && parts.length === 3) {
-    const y = parts[2].length === 4 ? parts[2] : '20' + parts[2];
-    dt = new Date(y + '-' + parts[1].padStart(2,'0') + '-' + parts[0].padStart(2,'0'));
+  // DD/MM/YYYY o DD/MM/YY (formato argentino / Google Sheets)
+  const m1 = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if (m1) {
+    let [, d, mo, y] = m1;
+    if (y.length === 2) y = '20' + y;
+    return `${y}-${mo.padStart(2,'0')}-${d.padStart(2,'0')}`;
   }
-  return isNaN(dt.getTime()) ? null : dt;
+  // YYYY-MM-DD
+  if (/^\d{4}-\d{2}-\d{2}/.test(str)) return str.slice(0,10);
+  // DD-MM-YYYY
+  const m2 = str.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+  if (m2) {
+    const [, d, mo, y] = m2;
+    return `${y}-${mo.padStart(2,'0')}-${d.padStart(2,'0')}`;
+  }
+  return null;
 }
-function toInputDate(dt) { return dt ? dt.toISOString().slice(0,10) : ''; }
 
-// ── COLUMNAS ───────────────────────────────────────────────────────────────────
+// Para gráficos que necesitan día de semana: devuelve Date local (sin UTC shift)
+function parseDate(str) {
+  const ymd = parseDateYMD(str);
+  if (!ymd) return null;
+  const [y, m, d] = ymd.split('-').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function toInputDate(dt) {
+  if (!dt) return '';
+  const y = dt.getFullYear();
+  const m = String(dt.getMonth()+1).padStart(2,'0');
+  const d = String(dt.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
+}
+
+// ─── COLUMNAS ─────────────────────────────────────────────────────────────────
 const COLS = {
   suc:      ['SUCURSAL','sucursal','Sucursal'],
   tipo:     ['TIPO DE PEDIDO','tipo de pedido','Tipo de Pedido','tipo'],
-  nro:      ['N° PEDIDO','N° pedido','N.° PEDIDO','N.° pedido','NUMERO PEDIDO','NÚMERO PEDIDO','nro pedido'],
+  nro:      ['N° PEDIDO','N° pedido','N.° PEDIDO','N.° pedido','NUMERO PEDIDO','NÚMERO PEDIDO'],
   dia:      ['DIA','DÍA','dia','día','Dia','Día','FECHA','fecha'],
   hora:     ['HORA','hora','Hora'],
   art:      ['CANTIDAD ARTICULOS','CANTIDAD DE ARTICULOS','CANTIDAD DE ARTÍCULOS','CANTIDAD ARTÍCULOS','cantidad articulos','cantidad de articulos'],
   cantTotal:['CANTIDAD TOTAL','cantidad total','Cantidad Total'],
   tiempo:   ['TIEMPO DE ARMADO','tiempo de armado','Tiempo de Armado','TIEMPO ESTIMADO DE PREPARACION','TIEMPO ESTIMADO DE PREPARACIÓN','tiempo estimado de preparacion']
 };
+
 function findCol(headers, aliases) {
-  for (let a of aliases) { const i = headers.findIndex(h => h.trim().toLowerCase() === a.toLowerCase()); if (i >= 0) return i; }
-  for (let a of aliases) { const i = headers.findIndex(h => h.trim().toLowerCase().startsWith(a.toLowerCase())); if (i >= 0) return i; }
+  for (let a of aliases) {
+    const idx = headers.findIndex(h => h.trim().toLowerCase() === a.toLowerCase());
+    if (idx >= 0) return idx;
+  }
+  for (let a of aliases) {
+    const idx = headers.findIndex(h => h.trim().toLowerCase().startsWith(a.toLowerCase()));
+    if (idx >= 0) return idx;
+  }
   return -1;
 }
 
-// ── PARSEAR CSV ────────────────────────────────────────────────────────────────
+// ─── PARSEAR CSV ──────────────────────────────────────────────────────────────
 function parseCSV(text) {
   const lines = text.trim().split(/\r?\n/);
   if (lines.length < 2) return null;
   const sep = lines[0].includes(';') ? ';' : ',';
   const headers = lines[0].split(sep).map(h => h.replace(/^"|"$/g,'').trim());
-  const ci = {};
-  for (const k of Object.keys(COLS)) ci[k] = findCol(headers, COLS[k]);
-  const missing = ['suc','tipo','dia','hora','art','tiempo'].filter(k => ci[k] < 0);
-  if (missing.length > 0) { showDropError('No se encontraron columnas: ' + missing.join(', ')); return null; }
+  const colIdx  = {};
+  for (const k of Object.keys(COLS)) colIdx[k] = findCol(headers, COLS[k]);
+
+  const required = ['suc','tipo','dia','hora','art','tiempo'];
+  const missing  = required.filter(k => colIdx[k] < 0);
+  if (missing.length > 0) {
+    showDropError('No se encontraron columnas: ' + missing.join(', ') + '. Revisá que los nombres coincidan.');
+    return null;
+  }
+
   const data = [];
   for (let i = 1; i < lines.length; i++) {
-    const v = lines[i].split(sep).map(x => x.replace(/^"|"$/g,'').trim());
-    if (v.length < 3 || v.every(x => !x)) continue;
+    const vals = lines[i].split(sep).map(v => v.replace(/^"|"$/g,'').trim());
+    if (vals.length < 3 || vals.every(v => !v)) continue;
     data.push({
-      suc:      v[ci.suc]  || '',
-      tipo:     v[ci.tipo] || '',
-      nro:      ci.nro >= 0       ? (v[ci.nro] || '') : '',
-      dia:      v[ci.dia]  || '',
-      hora:     v[ci.hora] || '',
-      art:      parseFloat((v[ci.art]   || '0').replace(',','.')) || 0,
-      cantTotal:ci.cantTotal >= 0 ? (parseFloat((v[ci.cantTotal] || '0').replace(',','.')) || 0) : 0,
-      tiempo:   parseFloat((v[ci.tiempo]|| '0').replace(',','.')) || 0
+      suc:      vals[colIdx.suc]  || '',
+      tipo:     vals[colIdx.tipo] || '',
+      nro:      colIdx.nro >= 0        ? (vals[colIdx.nro] || '')   : '',
+      dia:      vals[colIdx.dia]  || '',
+      hora:     vals[colIdx.hora] || '',
+      art:      parseFloat((vals[colIdx.art]  || '0').replace(',','.')) || 0,
+      cantTotal:colIdx.cantTotal >= 0 ? (parseFloat((vals[colIdx.cantTotal] || '0').replace(',','.')) || 0) : 0,
+      tiempo:   parseFloat((vals[colIdx.tiempo] || '0').replace(',','.')) || 0
     });
   }
   return data;
 }
 
-// ── STORAGE ────────────────────────────────────────────────────────────────────
-function saveStorage(data) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {} }
-function loadStorage()     { try { const s = localStorage.getItem(STORAGE_KEY); return s ? JSON.parse(s) : null; } catch(e) { return null; } }
+// ─── PERSISTENCIA ─────────────────────────────────────────────────────────────
+function saveStorage(data) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+}
+function loadStorage() {
+  try { const s = localStorage.getItem(STORAGE_KEY); return s ? JSON.parse(s) : null; } catch(e) { return null; }
+}
 
-// ── GOOGLE SHEETS ──────────────────────────────────────────────────────────────
+// ─── GOOGLE SHEETS SYNC ───────────────────────────────────────────────────────
 async function syncSheets() {
-  const btn = document.getElementById('btn-sync-header');
-  btn.disabled = true; btn.textContent = 'Actualizando…';
+  const btn    = document.getElementById('btn-sync-header');
+  const status = document.getElementById('sync-status');
+  btn.disabled = true;
+  btn.innerHTML = 'Actualizando…';
+  status.textContent = '';
   try {
     const res = await fetch(SHEETS_CSV);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = parseCSV(await res.text());
-    if (data && data.length > 0) { saveStorage(data); loadData(data, 'Google Sheets'); }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    const data = parseCSV(text);
+    if (data && data.length > 0) {
+      saveStorage(data);
+      loadData(data, 'Google Sheets');
+    }
   } catch(e) {
-    const msg = 'No se pudo conectar con Google Sheets. Verificá que la planilla esté publicada: Archivo → Compartir → Publicar en la web.';
-    document.getElementById('drop-zone').style.display !== 'none' ? showDropError(msg) : (document.getElementById('sync-status').textContent = '⚠ Sin conexión');
+    const msg = 'No se pudo conectar con Google Sheets. Asegurate de que la planilla esté publicada en la web (Archivo → Compartir → Publicar en la web → CSV).';
+    if (document.getElementById('drop-zone').style.display !== 'none') {
+      showDropError(msg);
+    } else {
+      status.textContent = '⚠ Sin conexión con Sheets';
+    }
   } finally {
     btn.disabled = false;
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg> Actualizar Sheets';
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg> Actualizar Sheets`;
   }
 }
-function showDropError(msg) { const el = document.getElementById('drop-error'); el.textContent = msg; el.style.display = 'block'; }
 
-// ── CARGAR DATOS ───────────────────────────────────────────────────────────────
+function showDropError(msg) {
+  const el = document.getElementById('drop-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// ─── CARGA DE DATOS ────────────────────────────────────────────────────────────
 function loadData(data, source) {
   rawData = data;
-  document.getElementById('drop-zone').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
+  document.getElementById('drop-zone').style.display       = 'none';
+  document.getElementById('dashboard').style.display       = 'block';
   document.getElementById('date-filter-bar').style.display = 'block';
+
+  // poblar select tipo
   const tipos = [...new Set(data.map(d => d.tipo).filter(Boolean))];
-  const sel = document.getElementById('filtro-tipo');
+  const sel   = document.getElementById('filtro-tipo');
   sel.innerHTML = '<option value="todos">Todos</option>';
   tipos.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; sel.appendChild(o); });
-  const dates = data.map(d => parseDate(d.dia)).filter(Boolean);
-  if (dates.length) {
-    document.getElementById('date-from').value = toInputDate(new Date(Math.min(...dates)));
-    document.getElementById('date-to').value   = toInputDate(new Date(Math.max(...dates)));
+
+  // inicializar rango con los datos (comparación de strings YMD, sin timezone)
+  const ymds = data.map(d => parseDateYMD(d.dia)).filter(Boolean);
+  if (ymds.length) {
+    ymds.sort();
+    document.getElementById('date-from').value = ymds[0];
+    document.getElementById('date-to').value   = ymds[ymds.length - 1];
   }
-  document.getElementById('sync-status').textContent = 'Act. ' + new Date().toLocaleTimeString('es-AR');
-  document.getElementById('info-text').textContent = data.length.toLocaleString('es-AR') + ' registros · ' + [...new Set(data.map(d=>d.suc))].length + ' sucursales · ' + tipos.length + ' tipos' + (source ? ' · ' + source : '');
+
+  document.getElementById('sync-status').textContent = `Actualizado ${new Date().toLocaleTimeString('es-AR')}`;
+  document.getElementById('info-text').textContent   = `${data.length.toLocaleString('es-AR')} registros cargados · ${[...new Set(data.map(d=>d.suc))].length} sucursales · ${tipos.length} tipos · Fuente: ${source||'CSV'}`;
+
   applyDateFilter();
 }
 
-// ── FILTRO FECHA ───────────────────────────────────────────────────────────────
+// ─── FILTRO DE FECHAS ─────────────────────────────────────────────────────────
 function applyDateFilter() {
-  const fv = document.getElementById('date-from').value;
-  const tv = document.getElementById('date-to').value;
-  const dtF = fv ? new Date(fv + 'T00:00:00') : null;
-  const dtT = tv ? new Date(tv + 'T23:59:59') : null;
-  filteredData = (!dtF && !dtT) ? [...rawData] : rawData.filter(d => {
-    const dt = parseDate(d.dia);
-    if (!dt) return true;
-    if (dtF && dt < dtF) return false;
-    if (dtT && dt > dtT) return false;
+  const fromYMD = document.getElementById('date-from').value; // "YYYY-MM-DD"
+  const toYMD   = document.getElementById('date-to').value;
+
+  filteredData = rawData.filter(d => {
+    if (!fromYMD && !toYMD) return true;
+    const ymd = parseDateYMD(d.dia);
+    if (!ymd) return true; // si no se puede parsear, incluir
+    if (fromYMD && ymd < fromYMD) return false;
+    if (toYMD   && ymd > toYMD)   return false;
     return true;
   });
-  const info = document.getElementById('date-range-info');
-  info.innerHTML = (dtF || dtT) ? '<strong>' + filteredData.length.toLocaleString('es-AR') + '</strong> pedidos en el período' : '';
+
+  const infoEl = document.getElementById('date-range-info');
+  if (fromYMD || toYMD) {
+    const fmt = ymd => {
+      if (!ymd) return '…';
+      const [y,m,d] = ymd.split('-');
+      return `${d}/${m}/${y}`;
+    };
+    infoEl.innerHTML = `<strong>${filteredData.length.toLocaleString('es-AR')}</strong> pedidos · ${fmt(fromYMD)} → ${fmt(toYMD)}`;
+  } else {
+    infoEl.textContent = '';
+  }
+
   buildAll();
 }
+
 function resetDateFilter() {
-  const dates = rawData.map(d => parseDate(d.dia)).filter(Boolean);
-  if (dates.length) {
-    document.getElementById('date-from').value = toInputDate(new Date(Math.min(...dates)));
-    document.getElementById('date-to').value   = toInputDate(new Date(Math.max(...dates)));
+  const ymds = rawData.map(d => parseDateYMD(d.dia)).filter(Boolean);
+  if (ymds.length) {
+    ymds.sort();
+    document.getElementById('date-from').value = ymds[0];
+    document.getElementById('date-to').value   = ymds[ymds.length - 1];
   }
   applyDateFilter();
 }
 
-// ── BUILD ALL ──────────────────────────────────────────────────────────────────
+// ─── BUILD ALL ────────────────────────────────────────────────────────────────
 function buildAll() {
-  buildTotals(); buildKPIs(); buildTipoCards();
-  buildChartSucursal(); buildChartTipo(); buildChartHora();
-  buildChartArticulos(); buildChartDia();
-  buildTablaArt(); buildTablaTiempo(); buildChartSemana();
+  buildTotals();
+  buildKPIs();
+  buildTipoCards();
+  buildChartSucursal();
+  buildChartTipo();
+  buildChartHora();
+  buildChartArticulos();
+  buildChartDia();
+  buildTablaArt();
+  buildTablaTiempo();
+  buildTablaDetalle();
+  buildChartSemana();
 }
 
-// ── TOTALES ────────────────────────────────────────────────────────────────────
+// ─── TOTALES DESTACADOS ───────────────────────────────────────────────────────
 function buildTotals() {
   const d = filteredData;
-  document.getElementById('total-pedidos').textContent   = d.length.toLocaleString('es-AR');
-  document.getElementById('total-articulos').textContent = d.reduce((s,x)=>s+x.art,0).toLocaleString('es-AR');
+  document.getElementById('total-pedidos').textContent    = d.length.toLocaleString('es-AR');
+  document.getElementById('total-articulos').textContent  = d.reduce((s,x)=>s+x.art,0).toLocaleString('es-AR');
   const tc = d.reduce((s,x)=>s+x.cantTotal,0);
-  document.getElementById('total-cantidad').textContent  = tc > 0 ? tc.toLocaleString('es-AR') : '—';
+  document.getElementById('total-cantidad').textContent   = tc > 0 ? tc.toLocaleString('es-AR') : '—';
   document.getElementById('total-sucursales').textContent = [...new Set(d.map(x=>x.suc).filter(Boolean))].length;
 }
 
-// ── KPIs ───────────────────────────────────────────────────────────────────────
+// ─── KPIs GENERALES ───────────────────────────────────────────────────────────
 function buildKPIs() {
-  const d = filteredData, n = d.length || 1;
-  document.getElementById('kpi-art').textContent    = (d.reduce((s,x)=>s+x.art,0)/n).toFixed(1);
-  const ac = d.reduce((s,x)=>s+x.cantTotal,0)/n;
-  document.getElementById('kpi-cant').textContent   = ac > 0 ? ac.toFixed(1) : '—';
-  document.getElementById('kpi-tiempo').textContent = Math.round(d.reduce((s,x)=>s+x.tiempo,0)/n);
-  document.getElementById('kpi-tiempo-total').textContent = d.reduce((s,x)=>s+x.tiempo,0).toLocaleString('es-AR');
+  const d = filteredData;
+  const n = d.length || 1;
+  document.getElementById('kpi-art').textContent         = (d.reduce((s,x)=>s+x.art,0)/n).toFixed(1);
+  const avgCant = d.reduce((s,x)=>s+x.cantTotal,0)/n;
+  document.getElementById('kpi-cant').textContent        = avgCant > 0 ? avgCant.toFixed(1) : '—';
+  document.getElementById('kpi-tiempo').textContent      = Math.round(d.reduce((s,x)=>s+x.tiempo,0)/n);
+  document.getElementById('kpi-tiempo-total').textContent= d.reduce((s,x)=>s+x.tiempo,0).toLocaleString('es-AR');
 }
 
-// ── CARDS POR TIPO ─────────────────────────────────────────────────────────────
+// ─── CARDS POR TIPO ───────────────────────────────────────────────────────────
 function buildTipoCards() {
   const tipos = [...new Set(filteredData.map(x=>x.tipo).filter(Boolean))];
   const total = filteredData.length || 1;
-  document.getElementById('tipo-grid').innerHTML = tipos.map((t,i) => {
-    const items = filteredData.filter(x=>x.tipo===t), n = items.length || 1;
-    const avgArt    = (items.reduce((s,x)=>s+x.art,0)/n).toFixed(1);
-    const avgCant   = items.reduce((s,x)=>s+x.cantTotal,0)/n;
-    const avgTiempo = Math.round(items.reduce((s,x)=>s+x.tiempo,0)/n);
-    return `<div class="tipo-card">
+  document.getElementById('tipo-grid').innerHTML = tipos.map((t, i) => {
+    const items    = filteredData.filter(x => x.tipo === t);
+    const n        = items.length || 1;
+    const avgArt   = (items.reduce((s,x)=>s+x.art,0)/n).toFixed(1);
+    const avgCant  = items.reduce((s,x)=>s+x.cantTotal,0)/n;
+    const avgTiempo= Math.round(items.reduce((s,x)=>s+x.tiempo,0)/n);
+    const pct      = Math.round(items.length/total*100);
+    return `
+    <div class="tipo-card">
       <div class="tipo-card-header">
         <div class="tipo-card-name">${t}</div>
-        <span class="tipo-badge t${i%4}">${Math.round(items.length/total*100)}% del total</span>
+        <span class="tipo-badge t${i%4}">${pct}% del total</span>
       </div>
       <div class="tipo-stats">
-        <div class="tipo-stat"><div class="tipo-stat-val">${avgArt}</div><div class="tipo-stat-lbl">Prom. artículos</div></div>
-        <div class="tipo-stat"><div class="tipo-stat-val">${avgCant>0?avgCant.toFixed(1):'—'}</div><div class="tipo-stat-lbl">Prom. cantidad</div></div>
-        <div class="tipo-stat"><div class="tipo-stat-val">${avgTiempo}<span style="font-size:13px;font-weight:400"> min</span></div><div class="tipo-stat-lbl">Prom. armado</div></div>
+        <div class="tipo-stat">
+          <div class="tipo-stat-val">${avgArt}</div>
+          <div class="tipo-stat-lbl">Prom. artículos</div>
+        </div>
+        <div class="tipo-stat">
+          <div class="tipo-stat-val">${avgCant > 0 ? avgCant.toFixed(1) : '—'}</div>
+          <div class="tipo-stat-lbl">Prom. cantidad</div>
+        </div>
+        <div class="tipo-stat">
+          <div class="tipo-stat-val">${avgTiempo}<span style="font-size:13px;font-weight:400"> min</span></div>
+          <div class="tipo-stat-lbl">Prom. armado</div>
+        </div>
       </div>
       <div class="tipo-total"><strong>${items.length.toLocaleString('es-AR')}</strong> pedidos en total</div>
     </div>`;
   }).join('');
 }
 
-// ── CHART SUCURSAL ─────────────────────────────────────────────────────────────
+// ─── GRÁFICO SUCURSAL ─────────────────────────────────────────────────────────
 function buildChartSucursal() {
   const filtro = document.getElementById('filtro-tipo').value;
-  const d = filtro==='todos' ? filteredData : filteredData.filter(x=>x.tipo===filtro);
-  const tipos = filtro==='todos' ? [...new Set(filteredData.map(x=>x.tipo).filter(Boolean))] : [filtro];
-  const suc = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))].sort();
+  const d      = filtro === 'todos' ? filteredData : filteredData.filter(x => x.tipo === filtro);
+  const tipos  = filtro === 'todos' ? [...new Set(filteredData.map(x=>x.tipo).filter(Boolean))] : [filtro];
+  const suc    = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))].sort();
   const datasets = tipos.map((t,i) => ({
     label: t,
     data: suc.map(s => d.filter(x=>x.suc===s&&(filtro==='todos'?x.tipo===t:true)).length),
-    backgroundColor: COLORS[i%COLORS.length], borderRadius:4, borderSkipped:false
+    backgroundColor: COLORS[i % COLORS.length],
+    borderRadius: 4, borderSkipped: false
   }));
-  document.getElementById('legend-suc').innerHTML = tipos.map((t,i)=>`<span class="leg"><span class="leg-box" style="background:${COLORS[i%COLORS.length]}"></span>${t}</span>`).join('');
-  document.getElementById('wrap-suc').style.height = Math.max(280, suc.length*38+80)+'px';
+  document.getElementById('legend-suc').innerHTML = tipos.map((t,i) =>
+    `<span class="leg"><span class="leg-box" style="background:${COLORS[i%COLORS.length]}"></span>${t}</span>`).join('');
+  document.getElementById('wrap-suc').style.height = Math.max(280, suc.length*38+80) + 'px';
   if (charts.suc) charts.suc.destroy();
   charts.suc = new Chart(document.getElementById('chartSucursal'), {
-    type:'bar', data:{labels:suc, datasets},
-    options:{ responsive:true, maintainAspectRatio:false, indexAxis:'y',
-      plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},
-      scales:{x:{stacked:true,grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#6b7280',font:{size:11}}},
-              y:{stacked:true,grid:{display:false},ticks:{color:'#6b7280',font:{size:11}}}}
+    type: 'bar', data: { labels: suc, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+      scales: {
+        x: { stacked: true, grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: '#6b7280', font:{size:11} } },
+        y: { stacked: true, grid: { display: false }, ticks: { color: '#6b7280', font:{size:11} } }
+      }
     }
   });
 }
 
-// ── CHART TIPO ─────────────────────────────────────────────────────────────────
+// ─── GRÁFICO TIPO ─────────────────────────────────────────────────────────────
 function buildChartTipo() {
-  const tipos = [...new Set(filteredData.map(x=>x.tipo).filter(Boolean))];
-  const counts = tipos.map(t=>filteredData.filter(x=>x.tipo===t).length);
-  const total = counts.reduce((a,b)=>a+b,0);
-  document.getElementById('legend-tipo').innerHTML = tipos.map((t,i)=>`<span class="leg"><span class="leg-box" style="background:${COLORS[i%COLORS.length]}"></span>${t} (${Math.round(counts[i]/total*100)}%)</span>`).join('');
+  const tipos  = [...new Set(filteredData.map(x=>x.tipo).filter(Boolean))];
+  const counts = tipos.map(t => filteredData.filter(x=>x.tipo===t).length);
+  const total  = counts.reduce((a,b)=>a+b,0);
+  document.getElementById('legend-tipo').innerHTML = tipos.map((t,i) =>
+    `<span class="leg"><span class="leg-box" style="background:${COLORS[i%COLORS.length]}"></span>${t} (${Math.round(counts[i]/total*100)}%)</span>`).join('');
   if (charts.tipo) charts.tipo.destroy();
   charts.tipo = new Chart(document.getElementById('chartTipo'), {
-    type:'doughnut', data:{labels:tipos,datasets:[{data:counts,backgroundColor:COLORS,borderWidth:2,borderColor:'var(--surface)'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.label}: ${ctx.parsed} (${Math.round(ctx.parsed/total*100)}%)`}}},cutout:'62%'}
+    type: 'doughnut',
+    data: { labels: tipos, datasets: [{ data: counts, backgroundColor: COLORS, borderWidth: 2, borderColor: 'var(--surface)' }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} (${Math.round(ctx.parsed/total*100)}%)` } } },
+      cutout: '62%'
+    }
   });
 }
 
-// ── CHART HORA ─────────────────────────────────────────────────────────────────
+// ─── GRÁFICO HORARIO ──────────────────────────────────────────────────────────
 function buildChartHora() {
-  const f = {};
+  const franjas = {};
   filteredData.forEach(d => {
     const h = d.hora ? parseInt(d.hora.split(':')[0]) : null;
-    if (h===null||isNaN(h)) return;
-    const fr = h<9?'Antes 9hs':h<12?'9–12hs':h<15?'12–15hs':h<18?'15–18hs':'18hs+';
-    f[fr] = (f[fr]||0)+1;
+    if (h === null || isNaN(h)) return;
+    const f = h < 9 ? 'Antes 9hs' : h < 12 ? '9–12hs' : h < 15 ? '12–15hs' : h < 18 ? '15–18hs' : '18hs+';
+    franjas[f] = (franjas[f]||0)+1;
   });
-  const order = ['Antes 9hs','9–12hs','12–15hs','15–18hs','18hs+'];
-  const labels = order.filter(x=>f[x]);
+  const order  = ['Antes 9hs','9–12hs','12–15hs','15–18hs','18hs+'];
+  const labels = order.filter(f => franjas[f]);
   if (charts.hora) charts.hora.destroy();
   charts.hora = new Chart(document.getElementById('chartHora'), {
-    type:'bar', data:{labels,datasets:[{data:labels.map(x=>f[x]),backgroundColor:'#0369a1',borderRadius:4}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{color:'#6b7280',font:{size:11}}},y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#6b7280',font:{size:11}}}}}
+    type: 'bar',
+    data: { labels, datasets: [{ data: labels.map(f=>franjas[f]), backgroundColor: '#0369a1', borderRadius: 4 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: '#6b7280', font:{size:11} } },
+        y: { grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: '#6b7280', font:{size:11} } }
+      }
+    }
   });
 }
 
-// ── CHART ARTÍCULOS ────────────────────────────────────────────────────────────
+// ─── GRÁFICO ARTÍCULOS POR SUCURSAL ───────────────────────────────────────────
 function buildChartArticulos() {
-  const suc = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))];
-  const sorted = suc.map(s=>({s,v:filteredData.filter(x=>x.suc===s).reduce((a,b)=>a+b.art,0)})).sort((a,b)=>b.v-a.v);
-  document.getElementById('wrap-art').style.height = Math.max(200, sorted.length*36+60)+'px';
+  const suc    = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))];
+  const sorted = suc.map(s => ({ s, v: filteredData.filter(x=>x.suc===s).reduce((a,b)=>a+b.art,0) })).sort((a,b)=>b.v-a.v);
+  document.getElementById('wrap-art').style.height = Math.max(200, sorted.length*36+60) + 'px';
   if (charts.art) charts.art.destroy();
   charts.art = new Chart(document.getElementById('chartArticulos'), {
-    type:'bar', data:{labels:sorted.map(x=>x.s),datasets:[{data:sorted.map(x=>x.v),backgroundColor:'#b45309',borderRadius:4}]},
-    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false}},
-      scales:{x:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#6b7280',font:{size:11}}},y:{grid:{display:false},ticks:{color:'#6b7280',font:{size:11}}}}}
+    type: 'bar',
+    data: { labels: sorted.map(x=>x.s), datasets: [{ data: sorted.map(x=>x.v), backgroundColor: '#b45309', borderRadius: 4 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: '#6b7280', font:{size:11} } },
+        y: { grid: { display: false }, ticks: { color: '#6b7280', font:{size:11} } }
+      }
+    }
   });
 }
 
-// ── CHART DÍA (sin domingo) ────────────────────────────────────────────────────
+// ─── GRÁFICO DÍA (sin domingo) ────────────────────────────────────────────────
 function buildChartDia() {
-  const dias = {lun:0,mar:0,'mié':0,jue:0,vie:0,'sáb':0};
+  const dias   = { lun:0, mar:0, 'mié':0, jue:0, vie:0, 'sáb':0 };
   const dnames = ['dom','lun','mar','mié','jue','vie','sáb'];
   filteredData.forEach(d => {
     const dt = parseDate(d.dia);
     if (!dt) return;
     const wd = dnames[dt.getDay()];
-    if (wd==='dom') return;
-    if (dias[wd]!==undefined) dias[wd]++;
+    if (wd === 'dom') return; // excluir domingos
+    if (dias[wd] !== undefined) dias[wd]++;
   });
-  const order = ['lun','mar','mié','jue','vie','sáb'];
-  const labels = order.filter(d=>dias[d]>0);
+  const order  = ['lun','mar','mié','jue','vie','sáb'];
+  const labels = order.filter(d => dias[d] > 0);
   if (charts.dia) charts.dia.destroy();
   charts.dia = new Chart(document.getElementById('chartDia'), {
-    type:'bar', data:{labels,datasets:[{data:labels.map(d=>dias[d]),backgroundColor:'#166534',borderRadius:4}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{color:'#6b7280',font:{size:11}}},y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#6b7280',font:{size:11}}}}}
+    type: 'bar',
+    data: { labels, datasets: [{ data: labels.map(d=>dias[d]), backgroundColor: '#166534', borderRadius: 4 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: '#6b7280', font:{size:11} } },
+        y: { grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: '#6b7280', font:{size:11} } }
+      }
+    }
   });
 }
 
-// ── TABLAS ─────────────────────────────────────────────────────────────────────
+// ─── TABLAS RANKING ────────────────────────────────────────────────────────────
 function buildTablaArt() {
-  const suc = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))];
-  const rows = suc.map(s=>{const it=filteredData.filter(x=>x.suc===s);return{s,avg:it.reduce((a,b)=>a+b.art,0)/it.length};}).sort((a,b)=>b.avg-a.avg).slice(0,10);
-  const max = rows[0]?.avg||1;
-  document.querySelector('#tabla-art tbody').innerHTML = rows.map((r,i)=>`<tr><td class="rank">${i+1}</td><td>${r.s}</td><td><strong>${r.avg.toFixed(1)}</strong></td><td><span class="bar-pill" style="width:${Math.round(r.avg/max*80)}px"></span></td></tr>`).join('');
-}
-function buildTablaTiempo() {
-  const suc = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))];
-  const rows = suc.map(s=>{const it=filteredData.filter(x=>x.suc===s);return{s,avg:it.reduce((a,b)=>a+b.tiempo,0)/it.length};}).sort((a,b)=>b.avg-a.avg).slice(0,10);
-  const max = rows[0]?.avg||1;
-  document.querySelector('#tabla-tiempo tbody').innerHTML = rows.map((r,i)=>`<tr><td class="rank">${i+1}</td><td>${r.s}</td><td><strong>${Math.round(r.avg)} min</strong></td><td><span class="bar-pill" style="width:${Math.round(r.avg/max*80)}px;background:#be185d"></span></td></tr>`).join('');
+  const suc  = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))];
+  const rows = suc.map(s => {
+    const items = filteredData.filter(x=>x.suc===s);
+    return { s, avg: items.reduce((a,b)=>a+b.art,0)/items.length };
+  }).sort((a,b)=>b.avg-a.avg).slice(0,10);
+  const max = rows[0]?.avg || 1;
+  document.querySelector('#tabla-art tbody').innerHTML = rows.map((r,i) =>
+    `<tr><td class="rank">${i+1}</td><td>${r.s}</td><td><strong>${r.avg.toFixed(1)}</strong></td><td><span class="bar-pill" style="width:${Math.round(r.avg/max*80)}px"></span></td></tr>`
+  ).join('');
 }
 
-// ── TENDENCIA SEMANAL ──────────────────────────────────────────────────────────
+function buildTablaTiempo() {
+  const suc  = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))];
+  const rows = suc.map(s => {
+    const items = filteredData.filter(x=>x.suc===s);
+    return { s, avg: items.reduce((a,b)=>a+b.tiempo,0)/items.length };
+  }).sort((a,b)=>b.avg-a.avg).slice(0,10);
+  const max = rows[0]?.avg || 1;
+  document.querySelector('#tabla-tiempo tbody').innerHTML = rows.map((r,i) =>
+    `<tr><td class="rank">${i+1}</td><td>${r.s}</td><td><strong>${Math.round(r.avg)} min</strong></td><td><span class="bar-pill" style="width:${Math.round(r.avg/max*80)}px;background:#be185d"></span></td></tr>`
+  ).join('');
+}
+
+// ─── TENDENCIA SEMANAL ────────────────────────────────────────────────────────
 function buildChartSemana() {
   const weeks = {};
   filteredData.forEach(d => {
-    const dt = parseDate(d.dia); if (!dt) return;
-    const w = new Date(dt); w.setDate(w.getDate()-w.getDay()+1);
-    const k = w.toISOString().slice(0,10);
-    weeks[k] = (weeks[k]||0)+1;
+    const dt = parseDate(d.dia);
+    if (!dt) return;
+    const tmp = new Date(dt);
+    tmp.setDate(tmp.getDate() - tmp.getDay() + 1);
+    const w = tmp.toISOString().slice(0,10);
+    weeks[w] = (weeks[w]||0)+1;
   });
   const sorted = Object.entries(weeks).sort((a,b)=>a[0].localeCompare(b[0]));
-  const card = document.getElementById('card-semana');
+  const card   = document.getElementById('card-semana');
   card.style.display = sorted.length < 2 ? 'none' : '';
   if (sorted.length < 2) return;
+  const labels = sorted.map(([w]) => { const d = new Date(w); return `${d.getDate()}/${d.getMonth()+1}`; });
   if (charts.semana) charts.semana.destroy();
   charts.semana = new Chart(document.getElementById('chartSemana'), {
-    type:'line',
-    data:{labels:sorted.map(([w])=>{const d=new Date(w);return d.getDate()+'/'+(d.getMonth()+1);}),
-          datasets:[{data:sorted.map(([,v])=>v),borderColor:'#0d6e6e',backgroundColor:'rgba(13,110,110,0.08)',borderWidth:2,tension:0.3,fill:true,pointRadius:3,pointBackgroundColor:'#0d6e6e'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{display:false},ticks:{color:'#6b7280',font:{size:11},maxTicksLimit:16}},y:{grid:{color:'rgba(128,128,128,0.1)'},ticks:{color:'#6b7280',font:{size:11}}}}}
+    type: 'line',
+    data: { labels, datasets: [{ data: sorted.map(([,v])=>v), borderColor: '#0d6e6e', backgroundColor: 'rgba(13,110,110,0.08)', borderWidth: 2, tension: 0.3, fill: true, pointRadius: 3, pointBackgroundColor: '#0d6e6e' }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: '#6b7280', font:{size:11}, maxTicksLimit: 16 } },
+        y: { grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: '#6b7280', font:{size:11} } }
+      }
+    }
   });
 }
 
-// ── EVENTOS ────────────────────────────────────────────────────────────────────
+// ─── TABLA DETALLE DE PEDIDOS ─────────────────────────────────────────────────
+const DETALLE_PAGE = 200;
+
+function buildTablaDetalle() {
+  const search = (document.getElementById('search-nro')?.value || '').toLowerCase().trim();
+  let rows = filteredData;
+  if (search) {
+    rows = rows.filter(d =>
+      d.nro.toLowerCase().includes(search) ||
+      d.suc.toLowerCase().includes(search)
+    );
+  }
+  // ordenar por fecha desc, luego por nro
+  rows = [...rows].sort((a, b) => {
+    const ya = parseDateYMD(a.dia) || '';
+    const yb = parseDateYMD(b.dia) || '';
+    return yb.localeCompare(ya) || b.nro.localeCompare(a.nro);
+  });
+
+  const shown = rows.slice(0, DETALLE_PAGE);
+  const tbody = document.querySelector('#tabla-detalle tbody');
+  tbody.innerHTML = shown.map((r, i) => `
+    <tr>
+      <td class="rank">${i+1}</td>
+      <td><strong>${r.nro || '—'}</strong></td>
+      <td>${r.suc}</td>
+      <td>${r.tipo}</td>
+      <td>${r.dia}</td>
+      <td>${r.hora}</td>
+      <td style="text-align:right">${r.art}</td>
+      <td style="text-align:right">${r.cantTotal > 0 ? r.cantTotal : '—'}</td>
+      <td style="text-align:right">${r.tiempo > 0 ? r.tiempo + ' min' : '—'}</td>
+    </tr>`).join('');
+
+  const moreEl = document.getElementById('detalle-more');
+  if (rows.length > DETALLE_PAGE) {
+    moreEl.textContent = `Mostrando ${DETALLE_PAGE} de ${rows.length.toLocaleString('es-AR')} pedidos. Usá el buscador para filtrar.`;
+  } else {
+    moreEl.textContent = rows.length === 0 ? 'Sin resultados.' : '';
+  }
+}
+
+// ─── EVENTOS CSV ──────────────────────────────────────────────────────────────
 document.getElementById('file-input').addEventListener('change', e => {
-  const file = e.target.files[0]; if (!file) return;
+  const file = e.target.files[0];
+  if (!file) return;
   const reader = new FileReader();
-  reader.onload = ev => { const data = parseCSV(ev.target.result); if (data) { saveStorage(data); loadData(data, file.name); } };
-  reader.readAsText(file, 'UTF-8');
-});
-const dropTarget = document.getElementById('drop-target');
-dropTarget.addEventListener('dragover', e=>{e.preventDefault();dropTarget.classList.add('drag-over');});
-dropTarget.addEventListener('dragleave', ()=>dropTarget.classList.remove('drag-over'));
-dropTarget.addEventListener('drop', e=>{
-  e.preventDefault(); dropTarget.classList.remove('drag-over');
-  const file = e.dataTransfer.files[0]; if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => { const data = parseCSV(ev.target.result); if (data) { saveStorage(data); loadData(data, file.name); } };
+  reader.onload = ev => {
+    const data = parseCSV(ev.target.result);
+    if (data) { saveStorage(data); loadData(data, file.name); }
+  };
   reader.readAsText(file, 'UTF-8');
 });
 
-// ── INIT ───────────────────────────────────────────────────────────────────────
+const dropTarget = document.getElementById('drop-target');
+dropTarget.addEventListener('dragover',  e => { e.preventDefault(); dropTarget.classList.add('drag-over'); });
+dropTarget.addEventListener('dragleave', () => dropTarget.classList.remove('drag-over'));
+dropTarget.addEventListener('drop', e => {
+  e.preventDefault(); dropTarget.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const data = parseCSV(ev.target.result);
+    if (data) { saveStorage(data); loadData(data, file.name); }
+  };
+  reader.readAsText(file, 'UTF-8');
+});
+
+// ─── INIT: recuperar datos guardados ─────────────────────────────────────────
 window.addEventListener('load', () => {
   const saved = loadStorage();
   if (saved && saved.length > 0) loadData(saved, 'caché local');
