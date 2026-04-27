@@ -370,21 +370,31 @@ const COLORS = ['#0d6e6e','#0369a1','#be185d','#b45309','#166534','#7c3aed'];
 function parseDateYMD(str) {
   if (!str) return null;
   str = str.trim();
-  // DD/MM/YYYY o DD/MM/YY (formato argentino / Google Sheets)
-  const m1 = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
-  if (m1) {
-    let [, d, mo, y] = m1;
-    if (y.length === 2) y = '20' + y;
-    return `${y}-${mo.padStart(2,'0')}-${d.padStart(2,'0')}`;
-  }
-  // YYYY-MM-DD
+
+  // YYYY-MM-DD (ISO)
   if (/^\d{4}-\d{2}-\d{2}/.test(str)) return str.slice(0,10);
-  // DD-MM-YYYY
-  const m2 = str.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
-  if (m2) {
-    const [, d, mo, y] = m2;
+
+  const slashMatch = str.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if (slashMatch) {
+    let [, a, b, y] = slashMatch;
+    if (y.length === 2) y = '20' + y;
+    // Si el primer número es > 12, es obligatoriamente DD/MM/YYYY
+    // Si el segundo número es > 12, es obligatoriamente MM/DD/YYYY
+    // En caso de ambigüedad, asumimos DD/MM/YYYY (formato Argentina)
+    let d, mo;
+    if (parseInt(a) > 12) { d = a; mo = b; }       // DD/MM
+    else if (parseInt(b) > 12) { d = b; mo = a; }  // MM/DD (Google Sheets en inglés)
+    else { d = a; mo = b; }                         // ambiguo → asumimos DD/MM
     return `${y}-${mo.padStart(2,'0')}-${d.padStart(2,'0')}`;
   }
+
+  // DD-MM-YYYY
+  const dashMatch = str.match(/^(\d{1,2})-(\d{1,2})-(\d{4})$/);
+  if (dashMatch) {
+    const [, d, mo, y] = dashMatch;
+    return `${y}-${mo.padStart(2,'0')}-${d.padStart(2,'0')}`;
+  }
+
   return null;
 }
 
@@ -540,7 +550,7 @@ function applyDateFilter() {
   filteredData = rawData.filter(d => {
     if (!fromYMD && !toYMD) return true;
     const ymd = parseDateYMD(d.dia);
-    if (!ymd) return true; // si no se puede parsear, incluir
+    if (!ymd) return false; // si no se puede parsear la fecha, excluir cuando hay filtro activo
     if (fromYMD && ymd < fromYMD) return false;
     if (toYMD   && ymd > toYMD)   return false;
     return true;
