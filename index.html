@@ -195,8 +195,8 @@
     <div class="col-hint">
       <p>Columnas esperadas en el CSV:</p>
       <code>SUCURSAL</code><code>TIPO DE PEDIDO</code><code>N° PEDIDO</code>
-      <code>DIA</code><code>HORA</code><code>CANTIDAD ARTICULOS</code>
-      <code>CANTIDAD TOTAL</code><code>TIEMPO DE ARMADO</code>
+      <code>DIA</code><code>HORA PEDIDO</code><code>HORA LISTO</code>
+      <code>CANTIDAD ARTICULOS</code><code>CANTIDAD TOTAL</code><code>TIEMPO DE ARMADO</code><code>CATEGORIA</code>
     </div>
   </div>
 </div>
@@ -239,8 +239,8 @@
   <div class="kpi-grid">
     <div class="kpi amber"><div class="kpi-label">Prom. artículos / pedido</div><div class="kpi-value" id="kpi-art">—</div></div>
     <div class="kpi coral"><div class="kpi-label">Prom. cantidad / pedido</div><div class="kpi-value" id="kpi-cant">—</div></div>
-    <div class="kpi blue"><div class="kpi-label">Prom. tiempo de armado</div><div class="kpi-value" id="kpi-tiempo">—</div><div class="kpi-sub">minutos por pedido</div></div>
-    <div class="kpi green"><div class="kpi-label">Tiempo total de armado</div><div class="kpi-value" id="kpi-tiempo-total">—</div><div class="kpi-sub">minutos</div></div>
+    <div class="kpi blue"><div class="kpi-label">Prom. tiempo de armado</div><div class="kpi-value" id="kpi-tiempo">—</div><div class="kpi-sub">por pedido</div></div>
+    <div class="kpi green"><div class="kpi-label">Tiempo total de armado</div><div class="kpi-value" id="kpi-tiempo-total">—</div><div class="kpi-sub">total</div></div>
   </div>
 
   <!-- MÉTRICAS POR TIPO -->
@@ -314,7 +314,49 @@
     </div>
   </div>
 
+  <!-- ANÁLISIS DE CATEGORÍAS -->
+  <div class="section-title">Tiempos por categoría</div>
+  <div class="chart-card full" id="card-categoria">
+    <div class="chart-title">Tiempo de armado promedio por categoría</div>
+    <div class="chart-sub">Comparativa de minutos promedio según tipo de producto</div>
+    <div class="charts-grid" style="margin-top:0">
+      <div style="overflow-x:auto">
+        <table class="top-table" id="tabla-categoria">
+          <thead><tr><th>Categoría</th><th style="text-align:right">Pedidos</th><th style="text-align:right">Prom. artículos</th><th style="text-align:right">Prom. cantidad</th><th style="text-align:right">Prom. armado</th><th style="text-align:right">Tiempo total</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="chart-wrap" style="height:280px"><canvas id="chartCategoria"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ANÁLISIS HORARIO ÓPTIMO -->
+  <div class="section-title">Análisis horario de pedidos</div>
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Pedidos en rango óptimo vs fuera de rango</div>
+      <div class="chart-sub">Rango óptimo: 8:00 hs a 13:00 hs</div>
+      <div id="legend-horario" class="legend-row"></div>
+      <div class="chart-wrap" style="height:200px"><canvas id="chartHorarioOptimo"></canvas></div>
+      <div id="kpi-horario-grid" class="kpi-grid" style="margin-top:14px;margin-bottom:0"></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Distribución horaria detallada</div>
+      <div class="chart-sub">Cantidad de pedidos por hora del día</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="chartHoraDetalle"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ANÁLISIS DE DESPACHO -->
+  <div class="section-title">Análisis de despacho por sucursal</div>
+  <div class="chart-card full">
+    <div class="chart-title">Estado de pedidos respecto al horario de salida</div>
+    <div class="chart-sub">¿El pedido estuvo listo antes de que saliera el reparto?</div>
+    <div id="despacho-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:14px"></div>
+  </div>
+
   <!-- DETALLE DE PEDIDOS -->
+
   <div class="section-title" style="margin-top:32px;">Detalle de pedidos</div>
   <div class="chart-card full">
     <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
@@ -334,8 +376,10 @@
             <th>N° Pedido</th>
             <th>Sucursal</th>
             <th>Tipo</th>
+            <th>Categoría</th>
             <th>Fecha</th>
-            <th>Hora</th>
+            <th>H. Pedido</th>
+            <th>H. Listo</th>
             <th style="text-align:right">Artículos</th>
             <th style="text-align:right">Cantidad</th>
             <th style="text-align:right">T. armado</th>
@@ -420,10 +464,12 @@ const COLS = {
   tipo:     ['TIPO DE PEDIDO','tipo de pedido','Tipo de Pedido','tipo'],
   nro:      ['N° PEDIDO','N° pedido','N.° PEDIDO','N.° pedido','NUMERO PEDIDO','NÚMERO PEDIDO'],
   dia:      ['DIA','DÍA','dia','día','Dia','Día','FECHA','fecha'],
-  hora:     ['HORA','hora','Hora'],
+  hora:     ['HORA PEDIDO','hora pedido','Hora Pedido','HORA','hora','Hora'],
+  horaListo:['HORA LISTO','hora listo','Hora Listo','HORA LISTA','hora lista'],
   art:      ['CANTIDAD ARTICULOS','CANTIDAD DE ARTICULOS','CANTIDAD DE ARTÍCULOS','CANTIDAD ARTÍCULOS','cantidad articulos','cantidad de articulos'],
   cantTotal:['CANTIDAD TOTAL','cantidad total','Cantidad Total'],
-  tiempo:   ['TIEMPO DE ARMADO','tiempo de armado','Tiempo de Armado','TIEMPO ESTIMADO DE PREPARACION','TIEMPO ESTIMADO DE PREPARACIÓN','tiempo estimado de preparacion']
+  tiempo:   ['TIEMPO DE ARMADO','tiempo de armado','Tiempo de Armado','TIEMPO ESTIMADO DE PREPARACION','TIEMPO ESTIMADO DE PREPARACIÓN','tiempo estimado de preparacion'],
+  categoria:['CATEGORIA','categoría','Categoria','Categoría','categoria']
 };
 
 function findCol(headers, aliases) {
@@ -473,7 +519,7 @@ function parseCSV(text) {
   const colIdx  = {};
   for (const k of Object.keys(COLS)) colIdx[k] = findCol(headers, COLS[k]);
 
-  const required = ['suc','tipo','dia','hora','art','tiempo'];
+  const required = ['suc','tipo','dia','hora','art'];
   const missing  = required.filter(k => colIdx[k] < 0);
   if (missing.length > 0) {
     showDropError('No se encontraron columnas: ' + missing.join(', ') + '. Revisá que los nombres coincidan.');
@@ -494,9 +540,11 @@ function parseCSV(text) {
       nro:      colIdx.nro >= 0        ? (vals[colIdx.nro] || '')   : '',
       dia:      diaRaw,
       hora:     vals[colIdx.hora] || '',
+      horaListo:colIdx.horaListo >= 0 ? (vals[colIdx.horaListo] || '') : '',
       art:      parseFloat((vals[colIdx.art]  || '0').replace(',','.')) || 0,
       cantTotal:colIdx.cantTotal >= 0 ? (parseFloat((vals[colIdx.cantTotal] || '0').replace(',','.')) || 0) : 0,
-      tiempo:   parseFloat((vals[colIdx.tiempo] || '0').replace(',','.')) || 0
+      tiempo:   parseFloat((vals[colIdx.tiempo] || '0').replace(',','.')) || 0,
+      categoria:colIdx.categoria >= 0 ? (vals[colIdx.categoria] || '') : ''
     });
   }
   return data;
@@ -623,6 +671,9 @@ function buildAll() {
   buildChartDia();
   buildTablaArt();
   buildTablaTiempo();
+  buildTablaCategoria();
+  buildHorarioOptimo();
+  buildDespacho();
   buildTablaDetalle();
   buildChartSemana();
 }
@@ -644,8 +695,8 @@ function buildKPIs() {
   document.getElementById('kpi-art').textContent         = (d.reduce((s,x)=>s+x.art,0)/n).toFixed(1);
   const avgCant = d.reduce((s,x)=>s+x.cantTotal,0)/n;
   document.getElementById('kpi-cant').textContent        = avgCant > 0 ? avgCant.toFixed(1) : '—';
-  document.getElementById('kpi-tiempo').textContent      = Math.round(d.reduce((s,x)=>s+x.tiempo,0)/n);
-  document.getElementById('kpi-tiempo-total').textContent= d.reduce((s,x)=>s+x.tiempo,0).toLocaleString('es-AR');
+  document.getElementById('kpi-tiempo').textContent      = formatMin(Math.round(d.reduce((s,x)=>s+x.tiempo,0)/n));
+  document.getElementById('kpi-tiempo-total').textContent= formatMin(d.reduce((s,x)=>s+x.tiempo,0));
 }
 
 // ─── CARDS POR TIPO ───────────────────────────────────────────────────────────
@@ -657,7 +708,7 @@ function buildTipoCards() {
     const n        = items.length || 1;
     const avgArt   = (items.reduce((s,x)=>s+x.art,0)/n).toFixed(1);
     const avgCant  = items.reduce((s,x)=>s+x.cantTotal,0)/n;
-    const avgTiempo= Math.round(items.reduce((s,x)=>s+x.tiempo,0)/n);
+    const avgTiempoMin= Math.round(items.reduce((s,x)=>s+x.tiempo,0)/n);
     const pct      = Math.round(items.length/total*100);
     return `
     <div class="tipo-card">
@@ -675,7 +726,7 @@ function buildTipoCards() {
           <div class="tipo-stat-lbl">Prom. cantidad</div>
         </div>
         <div class="tipo-stat">
-          <div class="tipo-stat-val">${avgTiempo}<span style="font-size:13px;font-weight:400"> min</span></div>
+          <div class="tipo-stat-val">${formatMin(avgTiempoMin)}</div>
           <div class="tipo-stat-lbl">Prom. armado</div>
         </div>
       </div>
@@ -827,7 +878,7 @@ function buildTablaTiempo() {
   }).sort((a,b)=>b.avg-a.avg).slice(0,10);
   const max = rows[0]?.avg || 1;
   document.querySelector('#tabla-tiempo tbody').innerHTML = rows.map((r,i) =>
-    `<tr><td class="rank">${i+1}</td><td>${r.s}</td><td><strong>${Math.round(r.avg)} min</strong></td><td><span class="bar-pill" style="width:${Math.round(r.avg/max*80)}px;background:#be185d"></span></td></tr>`
+    `<tr><td class="rank">${i+1}</td><td>${r.s}</td><td><strong>${formatMin(Math.round(r.avg))}</strong></td><td><span class="bar-pill" style="width:${Math.round(r.avg/max*80)}px;background:#be185d"></span></td></tr>`
   ).join('');
 }
 
@@ -862,6 +913,263 @@ function buildChartSemana() {
   });
 }
 
+
+// ─── HELPERS HORARIOS ─────────────────────────────────────────────────────────
+function parseHora(str) {
+  if (!str) return null;
+  str = str.trim();
+  const m = str.match(/^(\d{1,2})[:hH](\d{2})/);
+  if (!m) return null;
+  return parseInt(m[1]) * 60 + parseInt(m[2]); // minutos desde 00:00
+}
+
+function minToHHMM(min) {
+  if (min == null) return '—';
+  return `${String(Math.floor(min/60)).padStart(2,'0')}:${String(min%60).padStart(2,'0')}`;
+}
+
+// Formatea minutos como "45 min", "1hs", "1hs 30min", "2hs 15min", etc.
+function formatMin(min) {
+  if (min == null || min === 0) return '0 min';
+  min = Math.round(min);
+  if (min < 60) return `${min} min`;
+  const h = Math.floor(min / 60);
+  const m = min % 60;
+  if (m === 0) return `${h}hs`;
+  return `${h}hs ${m}min`;
+}
+
+// ─── ANÁLISIS CATEGORÍAS ──────────────────────────────────────────────────────
+function buildTablaCategoria() {
+  const cats = [...new Set(filteredData.map(x=>x.categoria).filter(Boolean))].sort();
+  if (cats.length === 0) {
+    document.getElementById('card-categoria').style.display = 'none';
+    return;
+  }
+  document.getElementById('card-categoria').style.display = '';
+  const rows = cats.map(c => {
+    const items = filteredData.filter(x=>x.categoria===c);
+    const n = items.length || 1;
+    return {
+      c,
+      n: items.length,
+      avgArt:    (items.reduce((s,x)=>s+x.art,0)/n).toFixed(1),
+      avgCant:   items.reduce((s,x)=>s+x.cantTotal,0)/n,
+      avgTiempo: Math.round(items.reduce((s,x)=>s+x.tiempo,0)/n),
+      totalTiempo: items.reduce((s,x)=>s+x.tiempo,0)
+    };
+  }).sort((a,b)=>b.avgTiempo-a.avgTiempo);
+
+  document.querySelector('#tabla-categoria tbody').innerHTML = rows.map(r => `
+    <tr>
+      <td><strong>${r.c}</strong></td>
+      <td style="text-align:right">${r.n}</td>
+      <td style="text-align:right">${r.avgArt}</td>
+      <td style="text-align:right">${r.avgCant>0?r.avgCant.toFixed(1):'—'}</td>
+      <td style="text-align:right"><strong>${formatMin(r.avgTiempo)}</strong></td>
+      <td style="text-align:right">${formatMin(r.totalTiempo)}</td>
+    </tr>`).join('');
+
+  if (charts.catBar) charts.catBar.destroy();
+  charts.catBar = new Chart(document.getElementById('chartCategoria'), {
+    type: 'bar',
+    data: {
+      labels: rows.map(r=>r.c),
+      datasets: [{
+        label: 'Prom. armado',
+        data: rows.map(r=>r.avgTiempo),
+        backgroundColor: COLORS,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+      plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ` ${formatMin(ctx.parsed.x)} promedio` } }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: '#6b7280', font:{size:11} } },
+        y: { grid: { display: false }, ticks: { color: '#6b7280', font:{size:11} } }
+      }
+    }
+  });
+}
+
+// ─── ANÁLISIS HORARIO ÓPTIMO ──────────────────────────────────────────────────
+const RANGO_OPT_DESDE = 8 * 60;  // 8:00
+const RANGO_OPT_HASTA = 13 * 60; // 13:00
+
+function buildHorarioOptimo() {
+  let dentro = 0, fuera = 0, sinHora = 0;
+  const porHora = {};
+
+  filteredData.forEach(d => {
+    const min = parseHora(d.hora);
+    if (min === null) { sinHora++; return; }
+    const h = Math.floor(min/60);
+    porHora[h] = (porHora[h]||0)+1;
+    if (min >= RANGO_OPT_DESDE && min < RANGO_OPT_HASTA) dentro++;
+    else fuera++;
+  });
+
+  const total = dentro + fuera;
+  const pctDentro = total > 0 ? Math.round(dentro/total*100) : 0;
+  const pctFuera  = total > 0 ? Math.round(fuera/total*100)  : 0;
+
+  document.getElementById('legend-horario').innerHTML = `
+    <span class="leg"><span class="leg-box" style="background:#166534"></span>Dentro del rango (${pctDentro}%)</span>
+    <span class="leg"><span class="leg-box" style="background:#be185d"></span>Fuera del rango (${pctFuera}%)</span>`;
+
+  if (charts.horOpt) charts.horOpt.destroy();
+  charts.horOpt = new Chart(document.getElementById('chartHorarioOptimo'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Dentro 8–13hs', 'Fuera del rango'],
+      datasets: [{ data: [dentro, fuera], backgroundColor: ['#166534','#be185d'], borderWidth: 2, borderColor: 'var(--surface)' }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} pedidos` } } }
+    }
+  });
+
+  // KPIs de horario
+  // Pedido más temprano y más tardío fuera de rango
+  const fueraItems = filteredData.filter(d => {
+    const min = parseHora(d.hora);
+    return min !== null && (min < RANGO_OPT_DESDE || min >= RANGO_OPT_HASTA);
+  });
+  const minsOrd = fueraItems.map(d=>parseHora(d.hora)).sort((a,b)=>a-b);
+  document.getElementById('kpi-horario-grid').innerHTML = `
+    <div class="kpi green">
+      <div class="kpi-label">En rango óptimo</div>
+      <div class="kpi-value">${dentro}</div>
+      <div class="kpi-sub">${pctDentro}% del total</div>
+    </div>
+    <div class="kpi coral">
+      <div class="kpi-label">Fuera de rango</div>
+      <div class="kpi-value">${fuera}</div>
+      <div class="kpi-sub">${pctFuera}% del total</div>
+    </div>
+    <div class="kpi amber">
+      <div class="kpi-label">Más temprano (fuera)</div>
+      <div class="kpi-value" style="font-size:18px">${minsOrd.length ? minToHHMM(minsOrd[0]) : '—'}</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Más tarde (fuera)</div>
+      <div class="kpi-value" style="font-size:18px">${minsOrd.length ? minToHHMM(minsOrd[minsOrd.length-1]) : '—'}</div>
+    </div>`;
+
+  // Gráfico por hora detallado
+  const allHoras = Object.keys(porHora).map(Number).sort((a,b)=>a-b);
+  if (charts.horaDet) charts.horaDet.destroy();
+  charts.horaDet = new Chart(document.getElementById('chartHoraDetalle'), {
+    type: 'bar',
+    data: {
+      labels: allHoras.map(h => `${String(h).padStart(2,'0')}:00`),
+      datasets: [{
+        data: allHoras.map(h => porHora[h]),
+        backgroundColor: allHoras.map(h => (h >= 8 && h < 13) ? '#166534' : '#be185d'),
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { color: '#6b7280', font:{size:10} } },
+        y: { grid: { color: 'rgba(128,128,128,0.1)' }, ticks: { color: '#6b7280', font:{size:11} } }
+      }
+    }
+  });
+}
+
+// ─── ANÁLISIS DE DESPACHO ─────────────────────────────────────────────────────
+const DESPACHO = [
+  { suc: ['1','2','3','4','5','6'], label: 'RC — Reparto Grassi', dias: ['lun','mar','mié','jue','vie'], salida: '15:40' },
+  { suc: ['2','4','5'],             label: 'RC — Reparto Grassi (sábados)', dias: ['sáb'],                salida: '11:30' },
+  { suc: ['8','9'],                 label: 'Zona — Comisionista',  dias: ['lun','mié','vie'],             salida: '15:00' },
+  { suc: ['10','11'],               label: 'Zona — Comisionista',  dias: ['lun','mié','vie'],             salida: '18:00' },
+  { suc: ['15'],                    label: 'Zona — Comisionista',  dias: ['mar','mié','jue'],             salida: '18:00' },
+  { suc: ['13'],                    label: 'Zona — Comisionista',  dias: ['lun','mié','vie'],             salida: '18:00' },
+  { suc: ['14'],                    label: 'Zona — Comisionista',  dias: ['lun','mié','vie'],             salida: '12:00' },
+];
+const DIA_NAMES = ['dom','lun','mar','mié','jue','vie','sáb'];
+
+function getSalidaParaSuc(sucName) {
+  // extrae número de sucursal del nombre (ej: "Sucursal 3" → "3")
+  const num = sucName.replace(/\D/g,'').replace(/^0+/,'');
+  const results = [];
+  for (const g of DESPACHO) {
+    if (g.suc.includes(num)) results.push(g);
+  }
+  return results;
+}
+
+function buildDespacho() {
+  const grid = document.getElementById('despacho-grid');
+  const suc  = [...new Set(filteredData.map(x=>x.suc).filter(Boolean))].sort();
+
+  const cards = suc.map(s => {
+    const grupos = getSalidaParaSuc(s);
+    const items  = filteredData.filter(x => x.suc === s);
+    if (!grupos.length) return null;
+
+    // para cada pedido con horaListo, ver si llegó antes de la salida
+    let aTime = 0, tarde = 0, sinDato = 0;
+    const tardeList = [];
+
+    items.forEach(d => {
+      const minListo = parseHora(d.horaListo);
+      if (minListo === null) { sinDato++; return; }
+      const dt = parseDate(d.dia);
+      if (!dt) { sinDato++; return; }
+      const diaStr = DIA_NAMES[dt.getDay()];
+
+      // encontrar el grupo de despacho que aplica ese día
+      const grupo = grupos.find(g => g.dias.includes(diaStr));
+      if (!grupo) { sinDato++; return; }
+
+      const minSalida = parseHora(grupo.salida);
+      if (minListo <= minSalida) {
+        aTime++;
+      } else {
+        tarde++;
+        const diff = minListo - minSalida;
+        tardeList.push({ nro: d.nro, dia: d.dia, listo: d.horaListo, salida: grupo.salida, diff });
+      }
+    });
+
+    const totalValidos = aTime + tarde;
+    const pctOk = totalValidos > 0 ? Math.round(aTime/totalValidos*100) : 0;
+    const color  = pctOk >= 90 ? '#166534' : pctOk >= 70 ? '#b45309' : '#be185d';
+    const tardeHTML = tardeList.slice(0,3).map(t =>
+      `<div style="font-size:11px;color:var(--muted);margin-top:4px">
+        ${t.nro ? `N° ${t.nro} · ` : ''}${t.dia} · Listo ${t.listo} vs salida ${t.salida}
+        <span style="color:#be185d;font-weight:600"> +${formatMin(t.diff)}</span>
+       </div>`).join('');
+
+    return `
+    <div class="chart-card" style="border-left:3px solid ${color}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="chart-title">${s}</div>
+        <span style="font-size:22px;font-weight:800;color:${color}">${totalValidos>0?pctOk+'%':'—'}</span>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:8px">
+        ${grupos.map(g=>`${g.label} · Salida ${g.salida} (${g.dias.join(', ')})`).join('<br>')}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div class="tipo-stat"><div class="tipo-stat-val" style="color:#166534">${aTime}</div><div class="tipo-stat-lbl">A tiempo</div></div>
+        <div class="tipo-stat"><div class="tipo-stat-val" style="color:#be185d">${tarde}</div><div class="tipo-stat-lbl">Tarde</div></div>
+        <div class="tipo-stat"><div class="tipo-stat-val" style="color:var(--muted)">${sinDato}</div><div class="tipo-stat-lbl">Sin hora listo</div></div>
+      </div>
+      ${tardeList.length ? '<div style="font-size:11px;font-weight:600;color:var(--muted);margin-top:6px">Pedidos tardíos recientes:</div>' + tardeHTML : ''}
+    </div>`;
+  }).filter(Boolean);
+
+  grid.innerHTML = cards.length ? cards.join('') : '<p style="color:var(--muted);font-size:13px">No hay datos de despacho para las sucursales del período.</p>';
+}
+
 // ─── TABLA DETALLE DE PEDIDOS ─────────────────────────────────────────────────
 const DETALLE_PAGE = 200;
 
@@ -889,11 +1197,13 @@ function buildTablaDetalle() {
       <td><strong>${r.nro || '—'}</strong></td>
       <td>${r.suc}</td>
       <td>${r.tipo}</td>
+      <td>${r.categoria || '—'}</td>
       <td>${r.dia}</td>
       <td>${r.hora}</td>
+      <td>${r.horaListo || '—'}</td>
       <td style="text-align:right">${r.art}</td>
       <td style="text-align:right">${r.cantTotal > 0 ? r.cantTotal : '—'}</td>
-      <td style="text-align:right">${r.tiempo > 0 ? r.tiempo + ' min' : '—'}</td>
+      <td style="text-align:right">${r.tiempo > 0 ? formatMin(r.tiempo) : '—'}</td>
     </tr>`).join('');
 
   const moreEl = document.getElementById('detalle-more');
